@@ -1,0 +1,69 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			Insert
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<ion-list lines="full" class="ion-no-margin ion-no-padding">
+		<form [formGroup]="form">
+
+			<ion-item>
+				<ion-label floating>Insert Title</ion-label>
+				<ion-input type="text" required formControlName="title"></ion-input>
+			</ion-item>
+			<div [hidden]="!form.get('title').touched && !form.get('title').dirty">
+				<div class="form-error" [hidden]="!form.get('title').errors?.minlength">This field has min. 3
+					characters.
+				</div>
+				<div class="form-error" [hidden]="!form.get('title').errors?.maxlength">This field has max. 10
+					characters.
+				</div>
+				<div class="form-error" [hidden]="!form.get('title').errors?.required">This field is required.
+				</div>
+			</div>
+
+			<ion-item>
+				<ion-label floating>Insert Description</ion-label>
+				<ion-input type="text" required formControlName="description"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<!-- ETICHETTA -->
+				<ion-label>Choose Label</ion-label>
+				<ion-select okText="Okay" cancelText="Dismiss" formControlName="labels">
+					<ion-option value="personal">Personal</ion-option>
+					<ion-option value="work">Work</ion-option>
+					<ion-option value="school">School</ion-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item>
+				<ion-label>Start Date</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" formControlName="startDate">
+				</ion-datetime>
+			</ion-item>
+			<ion-item>
+				<ion-label>End Date</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" formControlName="endDate">
+				</ion-datetime>
+			</ion-item>
+		</form>
+	</ion-list>
+
+	<button ion-button round (click)="saveLista()" [disabled]="form.invalid">Save Lista</button>
+
+	<ion-list>
+		<ion-item>
+			<p>title: {{lista.title}}</p>
+			<p>description: {{lista.description}}</p>
+			<p>labels: {{lista.labels}}</p>
+			<p>startDate: {{lista.startDate}}</p>
+			<p>endDate: {{lista.endDate}}</p>
+		</ion-item>
+	</ion-list>
+
+</ion-content>
