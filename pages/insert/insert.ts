@@ -10,7 +10,13 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class InsertPage {
   constructor(public navCtrl: NavController) {}
 
-  lista: Lista = new Lista();
+  lista: any = {
+      title: "",
+      description: "",
+      labels: "",
+      startDate: "",
+      endDate: ""
+    };
 
   // contenitore di input ( serve a prelevare e controllare valori)
   form = new FormGroup({
@@ -30,17 +36,17 @@ export class InsertPage {
   });
 
   saveLista() {
-    const listValue: Lista = this.getListValue();
+    const listValue = this.getListValue();
     this.lista = listValue;
   }
 
-  getListValue(): Lista {
+  getListValue() {
     const titleValue = this.form.get("title").value;
     const descriptionValue = this.form.get("description").value;
     const labelsValue = this.form.get("labels").value;
     const startDateValue = this.form.get("startDate").value;
     const endDateValue = this.form.get("endDate").value;
-    const lista: Lista = {
+    const lista = {
       title: titleValue,
       description: descriptionValue,
       labels: labelsValue,
